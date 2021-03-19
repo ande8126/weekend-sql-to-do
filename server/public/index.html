@@ -14,28 +14,31 @@
         <h1>ToDoer</h1>
     </header>
     <main>
-        <label>Owner:</label>
-        <select name="task owner" id="taskOwner">
-            <option value="Pat">Pat</option>
-            <option value="Jenna">Jenna</option>
-            <option value="Quinn">Quinn</option>
-            <option value="Casper">Casper</option>
-            <option value="Oliver">Oliver</option>       
-        </select>
-        <label>Task:</label>
-        <input id="taskIn" placeholder="move the boxspring, etc"></input>
-        <button id="addTaskButton">Add Task</button>
-        <table id="openTasks">
-            <thead>
-                <th>Owner</th>
-                <th>Task<th>
-                <th>Status</th>
-                <th>Remove</th>
-            </thead>
-            <tbody id="toDosOut"></tbody>
-        </table>
-        <button id="showCompletedTasksButton">See completed tasks</button>
-   
+        <div class="topSection">
+            <label>Owner:</label>
+            <select name="task owner" id="taskOwner">
+                <option value="Pat">Pat</option>
+                <option value="Jenna">Jenna</option>
+                <option value="Quinn">Quinn</option>
+                <option value="Casper">Casper</option>
+                <option value="Oliver">Oliver</option>       
+            </select>
+            <label>Task:</label>
+            <input id="taskIn" placeholder="move the boxspring, etc"></input>
+            <button id="addTaskButton">Add Task</button>
+            <table id="openTasks">
+                <thead>
+                    <th>Owner</th>
+                    <th>Task<th>
+                    <th>Status</th>
+                    <th>Remove</th>
+                </thead>
+                <tbody id="toDosOut"></tbody>
+            </table>
+            <button id="showCompletedTasksButton">See completed tasks</button>
+        </div>
+        <div class="bottomSection">
+        </div>
     </main>
 </body>
 </html>

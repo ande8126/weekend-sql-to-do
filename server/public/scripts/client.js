@@ -3,10 +3,10 @@ $( document ).ready( onReady );
 function onReady(){
     console.log( 'JQ' );
     getTasks();
-    addTaskButton
     $( '#addTaskButton' ).on( 'click', addTask )
-    $( '#showCompletedTasksButton' ).on( 'click', showCompletedTasks );
-}
+    $( '#showCompletedTasksButton' ).on( 'click', showCompletedTasks )
+    $( '#toDosOut' ).on( 'click', '.checkOffTaskButton', checkOffTask )
+}//end onReady
 
 function addTask(){
     let taskToSend = {
@@ -29,6 +29,25 @@ function addTask(){
     $( '#taskIn' ).val( '' );
 }//end addTask
 
+//PUT route for checking off tasks
+//move them to separate table
+function checkOffTask(){
+    console.log( 'in checkOffTask for PUT' );
+    //set unique click to variable
+    const myId = $( this ).data( 'id' );
+    //send variable to server/db w/ajax PUT
+    $.ajax({
+        method: 'PUT',
+        url: '/tasks/' + myId
+    }).then( function( response ){
+        console.log( 'back from server with PUT', response );
+        getTasks();
+    }).catch( function( err ){
+        console.log( err );
+        alert( 'Error in checkOffTask', err );
+    })//end ajax
+}//end checkOffTask
+
 function getTasks(){
     //call ajax w/GET route
     $.ajax({
@@ -42,10 +61,11 @@ function getTasks(){
         el.empty()
         for ( let i=0; i<response.length; i++ ){
             let task = response[i];
-            let checkMark = `<button class="checkTaskButton"> &#10004 </button>`;
+            let checkMark = `<button data-id="${task.id}" class="checkOffTaskButton">&#10004</button>`;
             if ( task.status ){
-                checkMark = `-`   
-                $( '#closedTasks' ).append(`
+                checkMark = `-`
+                showCompletedTasks();   
+                $( '#donesOut' ).append(`
                 <tr data-id=${task.id}>
                     <td>${task.doer}</td>
                     <td>${task.task}</td>
@@ -72,16 +92,18 @@ function getTasks(){
 }//end getTasks
 
 function showCompletedTasks(){
-    let el = $( 'main' )
+    ///NEED A WAY TO TOGGLE THIS SO IT DOESNT JUST REPEAT
+    let el = $( '.bottomSection' )
     el.append( `
-    <table id="closedTasks">
-     <thead>
-        <th>Owner</th>
-        <th>Task<th>
-        <th>Status</th>
-        <th>Remove</th>
-     </thead>
-    <tbody id="toDosOut"></tbody>
-    </table>
-    ` )
+        <table id="closedTasks">
+            <thead>
+                <th>Owner</th>
+                <th>Task<th>
+                <th>Status</th>
+                <th>Remove</th>
+            </thead>
+            <tbody id="donesOut">
+            </tbody>
+        </table>
+        ` )
 }//end showCompletedTasks

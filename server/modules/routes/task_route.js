@@ -31,7 +31,7 @@ router.post( '/', ( req, res )=>{
     //send query over to db
     let queryText = `INSERT INTO tasks (doer, task, status) VALUES ($1, $2, FALSE);`;
     pool.query( queryText, [newTask.doer, newTask.task])
-    .then( (results) =>{
+    .then( (results)=>{
         //send status-created
         res.sendStatus( 201 );
     })
@@ -40,6 +40,24 @@ router.post( '/', ( req, res )=>{
         res.sendStatus( 500 );
     })
 })
+
+//PUT route to check off tasks as their done
+router.put( '/', ( req, res )=>{
+    console.log( 'task_route PUT', req.params );
+    //mark status as true in db
+    //send query over
+    let queryString = `UPDATE tasks SET status=true WHERE id=$1;`;
+    //ask pool to run query
+    pool.query( queryString, [ req.params.id ])
+    .then( (results)=>{
+        //send back OK status if successful
+        res.sendStatus( 200 );
+    }).catch( ( err )=>{
+        //send error if not
+        console.log( err );
+        res.sendStatus( 500 );
+    })
+})//end PUT
 
 
 //exports
