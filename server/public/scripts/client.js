@@ -55,7 +55,7 @@ function getTasks(){
         url: '/tasks'
     }).then( function( response ){
         console.log( 'back from GET with response', response );
-        //target top table with variable
+        //assign DOM element to new variable
         let el = $( '#toDosOut' );
         //empty
         el.empty()
@@ -63,27 +63,37 @@ function getTasks(){
             let task = response[i];
             let checkMark = `<button data-id="${task.id}" class="checkOffTaskButton">&#10004</button>`;
             if ( task.status ){
-                checkMark = `-`
-                showCompletedTasks();   
-                $( '#donesOut' ).append(`
-                <tr data-id=${task.id}>
-                    <td>${task.doer}</td>
-                    <td>${task.task}</td>
-                    <td>${checkMark}</td>
-                    <td><button class="deleteTaskButton">Delete</button>
-                </tr>
-                `)
-            }//end append to completed tasks table
-            else{
-                el.append(`
-                <tr data-id=${task.id}>
-                    <td>${task.doer}</td>
-                    <td>${task.task}</td>
-                    <td>${checkMark}</td>
-                    <td><button class="deleteTaskButton">Delete</button>
-                </tr>
-                `)
-            }//end append to new tasks table
+            checkMark = `-`
+            }
+
+            //append
+            el.append(`
+            <tr data-id=${task.id}>
+                <td>${task.doer}</td>
+                <td>${task.task}</td>
+                <td>${checkMark}</td>
+                <td><button class="deleteTaskButton">Delete</button>
+            </tr>
+            `)
+            // // FIND WAY TO MOVE FINISHED TASKS TO NEW TABLE
+            //     //target top table with variable
+            //     let el = $( '#donesOut' );
+            //     //empty
+            //     el.empty()
+            //     //append   
+            //     el.append(`
+            //     <tr data-id=${task.id}>
+            //         <td>${task.doer}</td>
+            //         <td>${task.task}</td>
+            //         <td>${checkMark}</td>
+            //         <td><button class="deleteTaskButton">Delete</button>
+            //     </tr>
+            //     `)
+            // }//end append to completed tasks table
+            // else{
+            //     //target top table with variable
+
+            // }//end append to new tasks table
         }//end for
     }).catch( function( err ){
         console.log( err );

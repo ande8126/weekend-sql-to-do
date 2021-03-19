@@ -42,13 +42,16 @@ router.post( '/', ( req, res )=>{
 })
 
 //PUT route to check off tasks as their done
-router.put( '/', ( req, res )=>{
-    console.log( 'task_route PUT', req.params );
+router.put( '/:taskId', ( req, res )=>{
+    //set id to variable
+    let id = req.params.taskId
+    //double check with console log
+    console.log( 'updating task with id:', id);
     //mark status as true in db
     //send query over
     let queryString = `UPDATE tasks SET status=true WHERE id=$1;`;
     //ask pool to run query
-    pool.query( queryString, [ req.params.id ])
+    pool.query( queryString, [ id ])
     .then( (results)=>{
         //send back OK status if successful
         res.sendStatus( 200 );
