@@ -4,8 +4,30 @@ function onReady(){
     console.log( 'JQ' );
     getTasks();
     addTaskButton
+    $( '#addTaskButton' ).on( 'click', addTask )
     $( '#showCompletedTasksButton' ).on( 'click', showCompletedTasks );
 }
+
+function addTask(){
+    let taskToSend = {
+        doer: $( '#taskOwner' ).val(),
+        task: $( '#taskIn' ).val()
+    }//end taskToSend
+    //call ajax
+    $.ajax({
+        method: 'POST',
+        url: '/tasks',
+        data: taskToSend
+    }).then( function( response ){
+        console.log( 'back from server with POST response:', response );
+        getTasks();
+    }).catch( function( err ){
+        console.log( err );
+        alert( 'error in addTask' );
+    })//end ajax
+    //empty task input
+    $( '#taskIn' ).val( '' );
+}//end addTask
 
 function getTasks(){
     //call ajax w/GET route
