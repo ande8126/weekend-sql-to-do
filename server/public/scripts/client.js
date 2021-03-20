@@ -1,13 +1,19 @@
 $( document ).ready( onReady );
+let completedTasks = [];
+
 
 function onReady(){
     console.log( 'JQ' );
     getTasks();
     $( '#addTaskButton' ).on( 'click', addTask )
-    $( '#showCompletedTasksButton' ).on( 'click', showCompletedTasks )
+    $( '#showCompletedTasksButton' ).on( 'click', function( event ){
+        showCompletedTasks( completedTasks );
+    })
     $( '#toDosOut' ).on( 'click', '.checkOffTaskButton', checkOffTask )
+    $( 'main' ).on( 'click', '.deleteTaskButton', deleteTask )
 }//end onReady
 
+//POST route for sending new tasks to db
 function addTask(){
     let taskToSend = {
         doer: $( '#taskOwner' ).val(),
@@ -48,6 +54,23 @@ function checkOffTask(){
     })//end ajax
 }//end checkOffTask
 
+function deleteTask(){
+    console.log( 'in deleteTask for DELETE' );
+    //set variable for unique click
+    const myId = $( this ).closest( 'tr' ).data( 'id' )
+    //set up ajax for DELETE handshake
+    $.ajax({
+        method: 'DELETE',
+        url: '/tasks/' + myId
+    }).then( function( response ){
+        console.log( 'back from server with DELETE', response);
+        getTasks();
+    }).catch( function( err ){
+        console.log( err );
+        alert( 'Error in deleteTask', err );
+    })//end ajax
+}//end deleteTask
+
 function getTasks(){
     //call ajax w/GET route
     $.ajax({
@@ -63,9 +86,10 @@ function getTasks(){
             let task = response[i];
             let checkMark = `<button data-id="${task.id}" class="checkOffTaskButton">&#10004</button>`;
             if ( task.status ){
-            checkMark = `-`
+                checkMark = `-`
+                completedTasks.push( task );
+               // find way to keep finished tasks from showing up on first table
             }
-
             //append
             el.append(`
             <tr data-id=${task.id}>
@@ -75,25 +99,6 @@ function getTasks(){
                 <td><button class="deleteTaskButton">Delete</button>
             </tr>
             `)
-            // // FIND WAY TO MOVE FINISHED TASKS TO NEW TABLE
-            //     //target top table with variable
-            //     let el = $( '#donesOut' );
-            //     //empty
-            //     el.empty()
-            //     //append   
-            //     el.append(`
-            //     <tr data-id=${task.id}>
-            //         <td>${task.doer}</td>
-            //         <td>${task.task}</td>
-            //         <td>${checkMark}</td>
-            //         <td><button class="deleteTaskButton">Delete</button>
-            //     </tr>
-            //     `)
-            // }//end append to completed tasks table
-            // else{
-            //     //target top table with variable
-
-            // }//end append to new tasks table
         }//end for
     }).catch( function( err ){
         console.log( err );
@@ -101,10 +106,11 @@ function getTasks(){
     })//end ajax
 }//end getTasks
 
-function showCompletedTasks(){
+function showCompletedTasks( array ){
+    console.log( 'in showCompletedTasks', array );
     ///NEED A WAY TO TOGGLE THIS SO IT DOESNT JUST REPEAT
-    let el = $( '.bottomSection' )
-    el.append( `
+    let bottom = $( '.bottomSection' )
+    bottom.append( `
         <table id="closedTasks">
             <thead>
                 <th>Owner</th>
@@ -116,4 +122,22 @@ function showCompletedTasks(){
             </tbody>
         </table>
         ` )
+    //target new output with variable
+    let el = $( '#donesOut' );
+    //empty
+    el.empty();
+    //loop thru array of done tasks
+    for ( let i=0; i<array.length; i++ ){
+        //set new variable for index
+        let task = array[i];
+        //append
+        el.append(`
+        <tr data-id=${task.id}>
+            <td>${task.doer}</td>
+            <td>${task.task}</td>
+            <td>${task.status}</td>
+            <td><button class="deleteTaskButton">Delete</button>
+        </tr>
+        `)
+    }//end for
 }//end showCompletedTasks

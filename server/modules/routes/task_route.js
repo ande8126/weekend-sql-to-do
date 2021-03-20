@@ -62,6 +62,20 @@ router.put( '/:taskId', ( req, res )=>{
     })
 })//end PUT
 
+//DELETE route to remove an task if needed
+router.delete('/:taskId', ( req, res )=>{
+    console.log( 'in task_route DELETE' );
+    let id = req.params.taskId;
+    let queryText = `DELETE FROM tasks WHERE id=$1;`;
+    pool.query( queryText, [ id ] )
+    .then( (results)=>{
+        //delete sends back OK
+        res.sendStatus( 200 );
+    }).catch ( (error)=>{
+        console.log('There was an error', error );
+        res.sendStatus( 500 );
+    })
+})
 
 //exports
 module.exports = router;

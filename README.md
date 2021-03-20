@@ -16,6 +16,6 @@ Assign and mark off household tasks with this to-do app, developed with front an
 [] jQuery/ajax for talking DOM and server
 [] make routes (GET, POST, PUT & DELETE)
 ### functionality
-[] inputs and button should work to assign new tasks
+[X] inputs and button should work to assign new tasks
 [] each task should be "markable," when complete - find way to change appearance/move
 [] each task should have delete button to erase 
