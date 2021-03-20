@@ -78,18 +78,29 @@ function getTasks(){
         url: '/tasks'
     }).then( function( response ){
         console.log( 'back from GET with response', response );
-        //assign DOM element to new variable
+        //assign the two table DOM elements to new variables for output
         let el = $( '#toDosOut' );
+        let elTwo = $( '#donesOut' );
         //empty
-        el.empty()
+        el.empty();
+        elTwo.empty();
+        //loop thru all of the database
+        //append the tasks to two tables, depending on if completed
         for ( let i=0; i<response.length; i++ ){
             let task = response[i];
             let checkMark = `<button data-id="${task.id}" class="checkOffTaskButton">&#10004</button>`;
-            if ( task.status ){
+            if ( task.status === true ){
                 checkMark = `-`
-                completedTasks.push( task );
-               // find way to keep finished tasks from showing up on first table
-            }
+                elTwo.append(`
+                <tr data-id=${task.id}>
+                    <td>${task.doer}</td>
+                    <td>${task.task}</td>
+                    <td>${checkMark}</td>
+                    <td><button class="deleteTaskButton">Delete</button>
+                </tr>
+                `)
+            }//end status marked true (task complete)
+            else if ( task.status === false ){
             //append
             el.append(`
             <tr data-id=${task.id}>
@@ -99,6 +110,7 @@ function getTasks(){
                 <td><button class="deleteTaskButton">Delete</button>
             </tr>
             `)
+            }//end status marked false (task not done)
         }//end for
     }).catch( function( err ){
         console.log( err );
