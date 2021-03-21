@@ -8,7 +8,7 @@ The current version allows my household to create and assign tasks, then mark th
 Assign and mark off household tasks with this to-do app, developed with front and back-end functionality. PUT and DELETE routes allow users to update the database on the status of a given task. Vanilla javascript on the client-side sends finished tasks to a separate table.
 
 ## See it
-![todoer]( todoerscreengrab.png.png )
+![todoer]( todoerscreengrab.png )
 
 
 
