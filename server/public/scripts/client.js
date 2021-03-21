@@ -96,7 +96,7 @@ function getTasks(){
                     <td>${task.doer}</td>
                     <td>${task.task}</td>
                     <td>${checkMark}</td>
-                    <td><button class="deleteTaskButton">Delete</button>
+                    <td><button class="deleteTaskButton">Delete</button></td>
                 </tr>
                 `)
             }//end status marked true (task complete)
@@ -107,7 +107,7 @@ function getTasks(){
                 <td>${task.doer}</td>
                 <td>${task.task}</td>
                 <td>${checkMark}</td>
-                <td><button class="deleteTaskButton">Delete</button>
+                <td><button class="deleteTaskButton">Delete</button></td>
             </tr>
             `)
             }//end status marked false (task not done)

@@ -45,7 +45,7 @@ input{
     font-weight: 600;
     padding: 10px;
     border: 0;
-    margin-bottom: 30px;
+    margin-bottom: 5%;
 }
 
 button{
@@ -62,7 +62,97 @@ button{
     flex-direction: column;
 }
 
-.openTasks{
-
+table {
+    border-collapse: collapse;
+    font-size: 16px;
+    padding: 1.5px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 5%; 
 }
 
+#openTasks thead {
+    background-color: violet;
+    font-weight: 600;
+    font-size: 20px;
+    color: whitesmoke;
+}
+
+#openTasks th, #openTasks td{
+    padding: 10px 5px;
+}
+
+#openTasks tbody tr {
+    border-bottom: .3px solid #adadad;
+    background-color: whitesmoke;
+}
+
+#openTasks tbody tr:nth-of-type(even){
+    background-color: #ffe3fe;
+}
+
+#openTasks tbody tr:last-of-type{
+    border-bottom: 3px solid violet;
+}
+
+
+#openTasks thead {
+    background-color: violet;
+    font-weight: 600;
+    font-size: 20px;
+    color: whitesmoke;
+}
+
+#openTasks th, #openTasks td{
+    padding: 10px 5px;
+}
+
+#openTasks tbody tr {
+    border-bottom: .3px solid #adadad;
+    background-color: whitesmoke;
+}
+
+#openTasks tbody tr:nth-of-type(even){
+    background-color: #ffe3fe;
+}
+
+#openTasks tbody tr:last-of-type{
+    border-bottom: 3px solid violet;
+}
+.bottomSection {
+    border: 1px dotted violet;
+    padding: 2%;
+}
+
+h4{
+    text-align: center;
+    color: #101518;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 0;
+}
+
+#closedTasks thead {
+    background-color: #101518;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+#closedTasks th, #closedTasks td{
+    padding: 10px 5px;
+    color: whitesmoke;
+}
+
+#closedTasks tbody tr {
+    border-bottom: .3px solid #adadad;
+    background-color: #353d43;
+}
+
+#closedTasks tbody tr:nth-of-type(even){
+    background-color: #4c5357;
+}
+
+#closedTasks tbody tr:last-of-type{
+    border-bottom: 3px solid #101518;
+}
