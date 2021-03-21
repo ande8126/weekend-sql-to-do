@@ -10,7 +10,7 @@ function onReady(){
         showCompletedTasks( completedTasks );
     })
     $( '#toDosOut' ).on( 'click', '.checkOffTaskButton', checkOffTask )
-    $( 'main' ).on( 'click', '.deleteTaskButton', deleteTask )
+    $( '#tables' ).on( 'click', '.deleteTaskButton', deleteTask )
 }//end onReady
 
 //POST route for sending new tasks to db

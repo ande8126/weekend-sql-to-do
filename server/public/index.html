@@ -6,26 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="vendors/jquery-3.5.1.min.js"></script>
     <script src="scripts/client.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/style.css" />
     <title>ToDoer</title>
 </head>
 <body>
-    <header>
-        <h1>ToDoer</h1>
-    </header>
-    <main>
+    <section class="jumbotron">
+        <div class="container">
+            <div class ="row text-center"></div>
+                <h1>ToDoer</h1>
+                <div class="col-sm-4">
+                    <p>Who's the doer?</p>
+                    <select name="task owner" id="taskOwner">
+                        <option value="Pat">Pat</option>
+                        <option value="Jenna">Jenna</option>
+                        <option value="Quinn">Quinn</option>
+                        <option value="Casper">Casper</option>
+                        <option value="Oliver">Oliver</option>       
+                    </select>
+                    <p>What are they doing?</p>
+                    <input id="taskIn" placeholder="move the boxspring, etc"></input>
+                <button id="addTaskButton">Add Task</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container" id="tables">
         <div class="topSection">
-            <label>Owner:</label>
-            <select name="task owner" id="taskOwner">
-                <option value="Pat">Pat</option>
-                <option value="Jenna">Jenna</option>
-                <option value="Quinn">Quinn</option>
-                <option value="Casper">Casper</option>
-                <option value="Oliver">Oliver</option>       
-            </select>
-            <label>Task:</label>
-            <input id="taskIn" placeholder="move the boxspring, etc"></input>
-            <button id="addTaskButton">Add Task</button>
+
             <table id="openTasks">
                 <thead>
                     <th>Owner</th>
@@ -50,6 +58,6 @@
                 </tbody>
             </table>
         </div>
-    </main>
+    </section>
 </body>
 </html>
