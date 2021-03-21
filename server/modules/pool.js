@@ -3,7 +3,7 @@ const pg = require( 'pg' );
 
 //setup pg connection to db with pool
 const pool = new pg.Pool({
-    database: 'tasklog',
+    database: 'weekend-to-do-app',
     host: 'localhost',
     port: 5432, //postgres default
     max: 10,
