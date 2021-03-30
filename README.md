@@ -14,6 +14,7 @@ Assign and mark off household tasks with this to-do app, developed with front an
 
 ## Checklist
 ### build
+
 [X] setup files
 [X] setup server
 [X] bring in pg and pool to talk with db
@@ -23,6 +24,7 @@ Assign and mark off household tasks with this to-do app, developed with front an
 [X] make routes (GET, POST, PUT & DELETE)
 [X] use CSS to style page and table
 ### functionality
+
 [X] inputs and button should work to assign new tasks
 [X] each task should be "markable," when complete
 [X] find way to change appearance/move when marked complete
