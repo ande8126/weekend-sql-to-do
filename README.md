@@ -1,11 +1,12 @@
-# To-doer
+# TODOER - learning jQuery
 
 This is an ongoing project I started as a weekend-challenge assignment for Prime Digital Academy.
-The current version allows my household to create and assign tasks, then mark them as complete or delete them.
+The goal of the assignment was to demonstrate our ability to use jQuery to handle elements on the DOM while also talking to a server and DB (this is a full CRUD app).
+The current version of TODOER allows my household to create and assign tasks, then mark them as complete or delete them.
 
-## Browser-based to-do list, full CRUD
+## Browser-based to-do list
 
-Assign and mark off household tasks with this to-do app, developed with front and back-end functionality. PUT and DELETE routes allow users to update the database on the status of a given task. Vanilla javascript on the client-side sends finished tasks to a separate table.
+Assign and mark off household tasks with this to-do app, developed with front and back-end functionality. PUT and DELETE routes allow users to update the database on the status of a given task. Some vanilla Javascript logic on the client-side sends finished tasks to a separate table.
 
 ## See it
 ![todoer]( todoerscreengrab.png )
